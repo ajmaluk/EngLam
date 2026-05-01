@@ -11,6 +11,7 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
+.code-review-graph/
 
 # IntelliJ related
 *.iml
@@ -18,10 +19,10 @@ migrate_working_dir/
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# Visual Studio Code related
+.vscode/
+.history/
+*.code-workspace
 
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -32,6 +33,10 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+**/GeneratedPluginRegistrant.java
+**/GeneratedPluginRegistrant.h
+**/GeneratedPluginRegistrant.m
+**/GeneratedPluginRegistrant.swift
 
 # Symbolication related
 app.*.symbols
@@ -43,3 +48,60 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Android related
+**/android/local.properties
+**/android/.gradle/
+**/android/app/build/
+**/android/build/
+**/android/captures/
+**/android/.cxx/
+**/android/key.properties
+*.keystore
+*.jks
+
+# iOS related
+**/ios/Pods/
+**/ios/.generated/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/App.framework
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/app.flx
+**/ios/Flutter/app.zip
+**/ios/Flutter/flutter_assets/
+**/ios/DerivedData/
+**/ios/.symlinks/
+*.moved-aside
+*.xcuserstate
+*.mode1v3
+*.mode2v3
+*.pbxuser
+*.perspectivev3
+**/ios/ServiceDefinitions.json
+
+# MacOS related
+**/macos/Flutter/ephemeral/
+**/macos/Pods/
+**/macos/.generated/
+
+# Linux related
+**/linux/flutter/ephemeral/
+
+# Windows related
+**/windows/flutter/ephemeral/
+
+# Web related
+**/web/flutter_service_worker.js
+
+# Secrets
+.env*
+secrets.yaml
+
+# Node/Dist (from previous)
+node_modules/
+dist/
+dist-ssr/
+.trae/

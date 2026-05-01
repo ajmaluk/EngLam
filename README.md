@@ -1,17 +1,19 @@
-# englam
+# EngLam (Flutter)
 
-A new Flutter project.
+EngLam is a Flutter mobile keyboard-style typing app inspired by Manglish keyboards.
 
-## Getting Started
+## Run
 
-This project is a starting point for a Flutter application.
+```bash
+flutter pub get
+flutter run
+```
 
-A few resources to get you started if this is your first Flutter project:
+## Features
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Dark keyboard UI with key popups and haptics
+- Malayalam/English mode toggle
+- Suggestion bar with tap-to-commit
+- Symbols layout (?123 / ABC) + extra symbols page
+- Hold-to-delete and double-tap space for period
+- Copy and Clear actions for the typed text
