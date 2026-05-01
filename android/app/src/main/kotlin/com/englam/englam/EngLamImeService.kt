@@ -1,6 +1,7 @@
-package com.englam.englam
+package com.ajmal.englam
 
 import android.inputmethodservice.InputMethodService
+import android.content.Context
 import android.view.KeyEvent
 import android.view.View
 
@@ -10,14 +11,21 @@ class EngLamImeService : InputMethodService(), EngLamKeyboardView.Listener {
     private var currentWord: String = ""
     private var suggestions: List<String> = emptyList()
     private var lastSpaceTapAt: Long = 0L
+    private var keyboardHeightFactor: Float = 0.58f
+    private var showKeyBorders: Boolean = false
+    private var layoutMode: String = "translit"
 
     private lateinit var keyboardView: EngLamKeyboardView
 
     override fun onCreateInputView(): View {
+        loadPrefs()
         keyboardView = EngLamKeyboardView(this).apply {
             setListener(this@EngLamImeService)
             setMalayalamMode(isMalayalamMode)
             setSuggestions(suggestions)
+            setKeyboardHeightFactor(keyboardHeightFactor)
+            setShowKeyBorders(showKeyBorders)
+            setLayoutMode(layoutMode)
         }
         updateFromConnection()
         return keyboardView
@@ -25,6 +33,13 @@ class EngLamImeService : InputMethodService(), EngLamKeyboardView.Listener {
 
     override fun onStartInputView(info: android.view.inputmethod.EditorInfo?, restarting: Boolean) {
         super.onStartInputView(info, restarting)
+        loadPrefs()
+        if (this::keyboardView.isInitialized) {
+            keyboardView.setKeyboardHeightFactor(keyboardHeightFactor)
+            keyboardView.setShowKeyBorders(showKeyBorders)
+            keyboardView.setLayoutMode(layoutMode)
+            keyboardView.setMalayalamMode(isMalayalamMode)
+        }
         updateFromConnection()
     }
 
@@ -79,7 +94,7 @@ class EngLamImeService : InputMethodService(), EngLamKeyboardView.Listener {
             return
         }
 
-        if (!isMalayalamMode) {
+        if (!isMalayalamMode || layoutMode == "malayalam") {
             ic.commitText(" ", 1)
             updateFromConnection()
             return
@@ -97,12 +112,14 @@ class EngLamImeService : InputMethodService(), EngLamKeyboardView.Listener {
 
     override fun onToggleMalayalamMode() {
         isMalayalamMode = !isMalayalamMode
+        savePrefs()
         keyboardView.setMalayalamMode(isMalayalamMode)
         updateFromConnection()
     }
 
     override fun onSuggestionSelect(word: String) {
         val ic = currentInputConnection ?: return
+        if (layoutMode == "malayalam") return
         if (currentWord.isEmpty()) return
         ic.deleteSurroundingText(currentWord.length, 0)
         ic.commitText("$word ", 1)
@@ -113,16 +130,50 @@ class EngLamImeService : InputMethodService(), EngLamKeyboardView.Listener {
         lastSpaceTapAt = 0L
     }
 
+    override fun onToggleLayoutMode() {
+        layoutMode =
+            when (layoutMode) {
+                "translit" -> "malayalam"
+                "malayalam" -> "handwriting"
+                else -> "translit"
+            }
+        if (layoutMode == "handwriting") {
+            isMalayalamMode = true
+        }
+        savePrefs()
+        keyboardView.setLayoutMode(layoutMode)
+        updateFromConnection()
+    }
+
     private fun updateFromConnection() {
         val ic = currentInputConnection ?: return
         val before = ic.getTextBeforeCursor(200, 0)?.toString() ?: ""
         val word = before.takeLastWhile { !it.isWhitespace() }
         currentWord = word
-        suggestions = SuggestionEngine.getSuggestions(currentWord, isMalayalamMode)
+        suggestions =
+            if (layoutMode == "malayalam" || layoutMode == "handwriting") {
+                emptyList()
+            } else {
+                SuggestionEngine.getSuggestions(currentWord, isMalayalamMode)
+            }
         if (this::keyboardView.isInitialized) {
-            keyboardView.setSuggestions(suggestions)
+            if (layoutMode != "handwriting") {
+                keyboardView.setSuggestions(suggestions)
+            }
             keyboardView.setMalayalamMode(isMalayalamMode)
         }
     }
-}
 
+    private fun loadPrefs() {
+        val prefs = getSharedPreferences("englam_prefs", Context.MODE_PRIVATE)
+        keyboardHeightFactor = prefs.getFloat("keyboardHeightFactor", 0.58f).coerceIn(0.45f, 0.75f)
+        showKeyBorders = prefs.getBoolean("showKeyBorders", false)
+        layoutMode = prefs.getString("layoutMode", "translit") ?: "translit"
+        isMalayalamMode = prefs.getBoolean("isMalayalamMode", true)
+    }
+
+    private fun savePrefs() {
+        val prefs = getSharedPreferences("englam_prefs", Context.MODE_PRIVATE)
+        prefs.edit().putString("layoutMode", layoutMode).putBoolean("isMalayalamMode", isMalayalamMode).apply()
+    }
+}

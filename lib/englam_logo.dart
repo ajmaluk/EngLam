@@ -1,33 +1,47 @@
 import 'package:flutter/material.dart';
 
-import 'app_colors.dart';
-
 class EngLamLogo extends StatelessWidget {
-  const EngLamLogo({super.key, this.size = 44});
+  const EngLamLogo({
+    super.key,
+    this.size = 44,
+    this.backgroundColor,
+    this.iconColor,
+  });
 
   final double size;
+  final Color? backgroundColor;
+  final Color? iconColor;
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return SizedBox(
       width: size,
       height: size,
       child: CustomPaint(
-        painter: _EngLamLogoPainter(),
+        painter: _EngLamLogoPainter(
+          backgroundColor: backgroundColor ?? scheme.surfaceContainerHighest,
+          iconColor: iconColor ?? scheme.primary,
+        ),
       ),
     );
   }
 }
 
 class _EngLamLogoPainter extends CustomPainter {
+  _EngLamLogoPainter({required this.backgroundColor, required this.iconColor});
+
+  final Color backgroundColor;
+  final Color iconColor;
+
   @override
   void paint(Canvas canvas, Size size) {
     final r = RRect.fromRectAndRadius(Offset.zero & size, Radius.circular(size.shortestSide * 0.28));
-    final bg = Paint()..color = AppColors.surface2;
+    final bg = Paint()..color = backgroundColor;
     canvas.drawRRect(r, bg);
 
     final iconPaint = Paint()
-      ..color = AppColors.primary
+      ..color = iconColor
       ..style = PaintingStyle.stroke
       ..strokeWidth = size.shortestSide * 0.09
       ..strokeCap = StrokeCap.round
@@ -50,7 +64,7 @@ class _EngLamLogoPainter extends CustomPainter {
 
     canvas.drawPath(bubble, iconPaint);
 
-    final fill = Paint()..color = AppColors.primary;
+    final fill = Paint()..color = iconColor;
     final eLeft = w * 0.46;
     final eTop = h * 0.46;
     final eW = w * 0.22;
@@ -79,4 +93,3 @@ class _EngLamLogoPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
-

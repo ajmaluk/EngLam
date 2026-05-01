@@ -4,6 +4,7 @@ class AppColors {
   static const primary = Color(0xFF7C5CFF);
   static const primaryPressed = Color(0xFF6A4EE0);
   static const secondary = Color(0xFF3AD5FF);
+  static const accentGreen = Color(0xFF0F6B4E);
 
   static const background = Color(0xFF0F1016);
   static const surface = Color(0xFF171826);
@@ -16,4 +17,3 @@ class AppColors {
 
   static const textMuted = Color(0xFF8B92A8);
 }
-

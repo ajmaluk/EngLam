@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="englam_ime_label">എംഗ്ലാം കീബോർഡ്</string>
+    <string name="app_name">EngLam</string>
+    <string name="englam_ime_label">EngLam Keyboard</string>
+    <string name="englam_subtype_name">EngLam</string>
 </resources>
-

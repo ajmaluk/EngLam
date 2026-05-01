@@ -1,4 +1,4 @@
-package com.englam.englam
+package com.ajmal.englam
 
 object SuggestionEngine {
     private val dictionary: Map<String, List<String>> = mapOf(
@@ -103,4 +103,3 @@ object SuggestionEngine {
         return out.toList()
     }
 }
-
