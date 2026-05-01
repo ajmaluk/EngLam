@@ -36,7 +36,10 @@ class _EngLamLogoPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final r = RRect.fromRectAndRadius(Offset.zero & size, Radius.circular(size.shortestSide * 0.28));
+    final r = RRect.fromRectAndRadius(
+      Offset.zero & size,
+      Radius.circular(size.shortestSide * 0.28),
+    );
     final bg = Paint()..color = backgroundColor;
     canvas.drawRRect(r, bg);
 
@@ -73,19 +76,31 @@ class _EngLamLogoPainter extends CustomPainter {
     final gap = eH * 0.12;
 
     canvas.drawRRect(
-      RRect.fromRectAndRadius(Rect.fromLTWH(eLeft, eTop, bar, eH), Radius.circular(bar * 0.6)),
+      RRect.fromRectAndRadius(
+        Rect.fromLTWH(eLeft, eTop, bar, eH),
+        Radius.circular(bar * 0.6),
+      ),
       fill,
     );
     canvas.drawRRect(
-      RRect.fromRectAndRadius(Rect.fromLTWH(eLeft, eTop, eW, bar), Radius.circular(bar * 0.6)),
+      RRect.fromRectAndRadius(
+        Rect.fromLTWH(eLeft, eTop, eW, bar),
+        Radius.circular(bar * 0.6),
+      ),
       fill,
     );
     canvas.drawRRect(
-      RRect.fromRectAndRadius(Rect.fromLTWH(eLeft, eTop + bar + gap, eW * 0.86, bar), Radius.circular(bar * 0.6)),
+      RRect.fromRectAndRadius(
+        Rect.fromLTWH(eLeft, eTop + bar + gap, eW * 0.86, bar),
+        Radius.circular(bar * 0.6),
+      ),
       fill,
     );
     canvas.drawRRect(
-      RRect.fromRectAndRadius(Rect.fromLTWH(eLeft, eTop + (bar + gap) * 2, eW, bar), Radius.circular(bar * 0.6)),
+      RRect.fromRectAndRadius(
+        Rect.fromLTWH(eLeft, eTop + (bar + gap) * 2, eW, bar),
+        Radius.circular(bar * 0.6),
+      ),
       fill,
     );
   }

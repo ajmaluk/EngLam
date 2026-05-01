@@ -14,7 +14,10 @@ class AppTheme {
         secondary: AppColors.secondary,
         surface: AppColors.surface,
       ),
-      appBarTheme: const AppBarTheme(backgroundColor: AppColors.surface, foregroundColor: Colors.white),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.surface,
+        foregroundColor: Colors.white,
+      ),
       filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.all(AppColors.primary),
@@ -24,7 +27,9 @@ class AppTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
           foregroundColor: WidgetStateProperty.all(Colors.white),
-          side: WidgetStateProperty.all(const BorderSide(color: AppColors.border)),
+          side: WidgetStateProperty.all(
+            const BorderSide(color: AppColors.border),
+          ),
         ),
       ),
       dividerTheme: const DividerThemeData(color: AppColors.border),
@@ -38,7 +43,11 @@ class AppTheme {
     const border = Color(0xFFE3E6F2);
     const muted = Color(0xFF5D6478);
     return base.copyWith(
-      textTheme: base.textTheme.apply(fontFamily: 'Roboto', bodyColor: Colors.black, displayColor: Colors.black),
+      textTheme: base.textTheme.apply(
+        fontFamily: 'Roboto',
+        bodyColor: Colors.black,
+        displayColor: Colors.black,
+      ),
       primaryTextTheme: base.primaryTextTheme.apply(fontFamily: 'Roboto'),
       scaffoldBackgroundColor: bg,
       colorScheme: const ColorScheme.light(
@@ -46,7 +55,10 @@ class AppTheme {
         secondary: AppColors.secondary,
         surface: surface,
       ),
-      appBarTheme: const AppBarTheme(backgroundColor: surface, foregroundColor: Colors.black),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: surface,
+        foregroundColor: Colors.black,
+      ),
       filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.all(AppColors.primary),
@@ -60,7 +72,10 @@ class AppTheme {
         ),
       ),
       dividerTheme: const DividerThemeData(color: border),
-      listTileTheme: const ListTileThemeData(textColor: Colors.black, iconColor: muted),
+      listTileTheme: const ListTileThemeData(
+        textColor: Colors.black,
+        iconColor: muted,
+      ),
     );
   }
 }

@@ -95,11 +95,18 @@ class _RootPageState extends State<RootPage> {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          backgroundColor: Theme.of(context).colorScheme.surface,
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.surface,
                           title: const Text('Help'),
-                          content: const Text('Enable EngLam in system keyboard settings, then select it as your current keyboard.'),
+                          content: const Text(
+                            'Enable EngLam in system keyboard settings, then select it as your current keyboard.',
+                          ),
                           actions: [
-                            TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('OK')),
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pop(),
+                              child: const Text('OK'),
+                            ),
                           ],
                         );
                       },
@@ -113,7 +120,11 @@ class _RootPageState extends State<RootPage> {
                     showModalBottomSheet<void>(
                       context: context,
                       backgroundColor: Theme.of(context).colorScheme.surface,
-                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(18))),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(18),
+                        ),
+                      ),
                       builder: (context) {
                         return SafeArea(
                           top: false,
@@ -131,7 +142,9 @@ class _RootPageState extends State<RootPage> {
                                   },
                                 ),
                                 ListTile(
-                                  leading: const Icon(Icons.keyboard_alt_outlined),
+                                  leading: const Icon(
+                                    Icons.keyboard_alt_outlined,
+                                  ),
                                   title: const Text('Select Keyboard'),
                                   onTap: () {
                                     Navigator.of(context).pop();
@@ -231,7 +244,10 @@ class _BottomTab extends StatelessWidget {
                   children: [
                     Icon(icon, size: 22, color: fg),
                     const SizedBox(width: 10),
-                    Text(label, style: TextStyle(color: fg, fontWeight: FontWeight.w800)),
+                    Text(
+                      label,
+                      style: TextStyle(color: fg, fontWeight: FontWeight.w800),
+                    ),
                   ],
                 ),
               ),
@@ -258,16 +274,27 @@ class LayoutsPage extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.centerLeft,
-              child: Text('Layouts', style: textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)),
+              child: Text(
+                'Layouts',
+                style: textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
             ),
             const SizedBox(height: 10),
             AnimatedBuilder(
               animation: settings,
               builder: (context, _) {
-                final selectedEnglish = settings.layoutMode == KeyboardLayoutMode.translit && !settings.isMalayalamMode;
-                final selectedAbcMalayalam = settings.layoutMode == KeyboardLayoutMode.translit && settings.isMalayalamMode;
-                final selectedAksharangal = settings.layoutMode == KeyboardLayoutMode.malayalam;
-                final selectedHandwriting = settings.layoutMode == KeyboardLayoutMode.handwriting;
+                final selectedEnglish =
+                    settings.layoutMode == KeyboardLayoutMode.translit &&
+                    !settings.isMalayalamMode;
+                final selectedAbcMalayalam =
+                    settings.layoutMode == KeyboardLayoutMode.translit &&
+                    settings.isMalayalamMode;
+                final selectedAksharangal =
+                    settings.layoutMode == KeyboardLayoutMode.malayalam;
+                final selectedHandwriting =
+                    settings.layoutMode == KeyboardLayoutMode.handwriting;
 
                 return Column(
                   children: [
@@ -308,7 +335,9 @@ class LayoutsPage extends StatelessWidget {
                           preview: const _PreviewHandwriting(),
                           selected: selectedHandwriting,
                           onTap: () {
-                            settings.setLayoutMode(KeyboardLayoutMode.handwriting);
+                            settings.setLayoutMode(
+                              KeyboardLayoutMode.handwriting,
+                            );
                             settings.setMalayalamMode(true);
                           },
                         ),
@@ -317,7 +346,9 @@ class LayoutsPage extends StatelessWidget {
                           preview: const _PreviewMalayalamGrid(),
                           selected: selectedAksharangal,
                           onTap: () {
-                            settings.setLayoutMode(KeyboardLayoutMode.malayalam);
+                            settings.setLayoutMode(
+                              KeyboardLayoutMode.malayalam,
+                            );
                           },
                         ),
                       ],
@@ -327,7 +358,9 @@ class LayoutsPage extends StatelessWidget {
                       label: 'Voice typing',
                       preview: const _PreviewVoiceTyping(),
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Coming soon')));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Coming soon')),
+                        );
                       },
                     ),
                   ],
@@ -339,7 +372,11 @@ class LayoutsPage extends StatelessWidget {
               width: double.infinity,
               child: OutlinedButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => KeyboardPage(settings: settings)));
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => KeyboardPage(settings: settings),
+                    ),
+                  );
                 },
                 child: const Text('Try in app'),
               ),
@@ -385,11 +422,19 @@ class _LayoutPickerTile extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: scheme.surfaceContainerHighest,
                   borderRadius: BorderRadius.circular(14),
-                  border: Border.all(color: selected ? scheme.primary : scheme.outlineVariant, width: selected ? 2 : 1),
+                  border: Border.all(
+                    color: selected ? scheme.primary : scheme.outlineVariant,
+                    width: selected ? 2 : 1,
+                  ),
                 ),
                 child: Stack(
                   children: [
-                    Positioned.fill(child: Padding(padding: const EdgeInsets.all(10), child: preview)),
+                    Positioned.fill(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: preview,
+                      ),
+                    ),
                     if (selected)
                       Positioned(
                         right: 0,
@@ -404,7 +449,11 @@ class _LayoutPickerTile extends StatelessWidget {
                               alignment: Alignment.bottomRight,
                               child: Padding(
                                 padding: EdgeInsets.only(right: 10, bottom: 10),
-                                child: Icon(Icons.check, color: Colors.white, size: 20),
+                                child: Icon(
+                                  Icons.check,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
                               ),
                             ),
                           ),
@@ -422,7 +471,9 @@ class _LayoutPickerTile extends StatelessWidget {
               decoration: BoxDecoration(
                 color: selected ? scheme.primary : bg,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: selected ? scheme.primary : scheme.outlineVariant),
+                border: Border.all(
+                  color: selected ? scheme.primary : scheme.outlineVariant,
+                ),
               ),
               child: Text(
                 label,
@@ -457,7 +508,11 @@ class _CornerClipper extends CustomClipper<Path> {
 }
 
 class _LayoutPickerWideTile extends StatelessWidget {
-  const _LayoutPickerWideTile({required this.label, required this.preview, required this.onTap});
+  const _LayoutPickerWideTile({
+    required this.label,
+    required this.preview,
+    required this.onTap,
+  });
 
   final String label;
   final Widget preview;
@@ -487,7 +542,10 @@ class _LayoutPickerWideTile extends StatelessWidget {
               const SizedBox(height: 12),
               Container(
                 constraints: const BoxConstraints(minHeight: 46),
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 8,
+                ),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: scheme.surface,
@@ -499,7 +557,9 @@ class _LayoutPickerWideTile extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
-                  style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
+                  style: textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
             ],
@@ -523,11 +583,13 @@ class _PreviewQwerty extends StatelessWidget {
         _PreviewSuggestionRow(chips: chips, active: active),
         const SizedBox(height: 10),
         const Expanded(
-          child: _MiniKeyboard(keys: [
-            ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-            ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-            ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
-          ]),
+          child: _MiniKeyboard(
+            keys: [
+              ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+              ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+              ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+            ],
+          ),
         ),
       ],
     );
@@ -541,14 +603,19 @@ class _PreviewMalayalamGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const _PreviewSuggestionRow(chips: ['ക', 'ഖ', 'ഗ', 'ഘ', 'ങ'], active: 'ഗ'),
+        const _PreviewSuggestionRow(
+          chips: ['ക', 'ഖ', 'ഗ', 'ഘ', 'ങ'],
+          active: 'ഗ',
+        ),
         const SizedBox(height: 10),
         const Expanded(
-          child: _MiniKeyboard(keys: [
-            ['ക', 'ഖ', 'ഗ', 'ഘ', 'ങ'],
-            ['ച', 'ഛ', 'ജ', 'ഝ', 'ഞ'],
-            ['ട', 'ഠ', 'ഡ', 'ഢ', 'ണ'],
-          ]),
+          child: _MiniKeyboard(
+            keys: [
+              ['ക', 'ഖ', 'ഗ', 'ഘ', 'ങ'],
+              ['ച', 'ഛ', 'ജ', 'ഝ', 'ഞ'],
+              ['ട', 'ഠ', 'ഡ', 'ഢ', 'ണ'],
+            ],
+          ),
         ),
       ],
     );
@@ -630,8 +697,12 @@ class _PreviewSuggestionRow extends StatelessWidget {
                         softWrap: false,
                         style: TextStyle(
                           fontSize: 10,
-                          fontWeight: c == active ? FontWeight.w800 : FontWeight.w600,
-                          color: c == active ? Colors.white : AppColors.textMuted,
+                          fontWeight: c == active
+                              ? FontWeight.w800
+                              : FontWeight.w600,
+                          color: c == active
+                              ? Colors.white
+                              : AppColors.textMuted,
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -656,22 +727,38 @@ class _MiniKeyboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final maxKeys = keys.fold<int>(0, (v, e) => e.length > v ? e.length : v);
+        final maxKeys = keys.fold<int>(
+          0,
+          (v, e) => e.length > v ? e.length : v,
+        );
         const gap = 3.0;
         const rowGap = 4.0;
-        final padding = constraints.hasBoundedHeight && constraints.maxHeight < 90 ? 8.0 : 10.0;
+        final padding =
+            constraints.hasBoundedHeight && constraints.maxHeight < 90
+            ? 8.0
+            : 10.0;
 
-        final widthRaw = (constraints.maxWidth - padding * 2 - (maxKeys - 1) * gap) / maxKeys;
+        final widthRaw =
+            (constraints.maxWidth - padding * 2 - (maxKeys - 1) * gap) /
+            maxKeys;
         var keySize = widthRaw;
         if (constraints.hasBoundedHeight) {
-          final heightRaw = (constraints.maxHeight - padding * 2 - (keys.length - 1) * rowGap) / keys.length;
+          final heightRaw =
+              (constraints.maxHeight -
+                  padding * 2 -
+                  (keys.length - 1) * rowGap) /
+              keys.length;
           keySize = keySize < heightRaw ? keySize : heightRaw;
         }
         keySize = keySize.clamp(6.0, 16.0);
         if (constraints.hasBoundedHeight) {
-          final totalHeight = padding * 2 + keys.length * keySize + (keys.length - 1) * rowGap;
+          final totalHeight =
+              padding * 2 + keys.length * keySize + (keys.length - 1) * rowGap;
           if (totalHeight > constraints.maxHeight) {
-            keySize = (keySize - (totalHeight - constraints.maxHeight)).clamp(6.0, 16.0);
+            keySize = (keySize - (totalHeight - constraints.maxHeight)).clamp(
+              6.0,
+              16.0,
+            );
           }
         }
 
@@ -695,7 +782,7 @@ class _MiniKeyboard extends StatelessWidget {
                   ],
                 ),
                 if (r != keys.length - 1) const SizedBox(height: rowGap),
-              ]
+              ],
             ],
           ),
         );
@@ -722,7 +809,11 @@ class _MiniKey extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: TextStyle(fontSize: (size * 0.48).clamp(6, 9), fontWeight: FontWeight.w800, color: Colors.white),
+        style: TextStyle(
+          fontSize: (size * 0.48).clamp(6, 9),
+          fontWeight: FontWeight.w800,
+          color: Colors.white,
+        ),
       ),
     );
   }
@@ -742,7 +833,12 @@ class ThemesPage extends StatelessWidget {
         return ListView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
           children: [
-            Text('Appearance', style: textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)),
+            Text(
+              'Appearance',
+              style: textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.w900,
+              ),
+            ),
             const SizedBox(height: 10),
             _ThemeTile(
               title: 'System',
@@ -796,19 +892,34 @@ class _ThemeTile extends StatelessWidget {
         decoration: BoxDecoration(
           color: scheme.surfaceContainerHighest,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: selected ? scheme.primary : scheme.outlineVariant),
+          border: Border.all(
+            color: selected ? scheme.primary : scheme.outlineVariant,
+          ),
         ),
         child: Row(
           children: [
-            Icon(selected ? Icons.radio_button_checked : Icons.radio_button_off, color: selected ? scheme.primary : scheme.onSurfaceVariant),
+            Icon(
+              selected ? Icons.radio_button_checked : Icons.radio_button_off,
+              color: selected ? scheme.primary : scheme.onSurfaceVariant,
+            ),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w900)),
+                  Text(
+                    title,
+                    style: textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
                   const SizedBox(height: 2),
-                  Text(subtitle, style: textTheme.bodyMedium?.copyWith(color: scheme.onSurfaceVariant)),
+                  Text(
+                    subtitle,
+                    style: textTheme.bodyMedium?.copyWith(
+                      color: scheme.onSurfaceVariant,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -834,7 +945,12 @@ class SettingsPage extends StatelessWidget {
         return ListView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
           children: [
-            Text('Keyboard height', style: textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)),
+            Text(
+              'Keyboard height',
+              style: textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.w900,
+              ),
+            ),
             const SizedBox(height: 8),
             Container(
               padding: const EdgeInsets.all(16),
@@ -846,7 +962,12 @@ class SettingsPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Height', style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w900)),
+                  Text(
+                    'Height',
+                    style: textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
                   const SizedBox(height: 10),
                   Slider(
                     value: settings.keyboardHeightFactor,
@@ -854,12 +975,22 @@ class SettingsPage extends StatelessWidget {
                     max: 0.75,
                     onChanged: (v) => settings.setKeyboardHeightFactor(v),
                   ),
-                  Text('Affects both the in-app keyboard and the system keyboard', style: textTheme.bodyMedium?.copyWith(color: scheme.onSurfaceVariant)),
+                  Text(
+                    'Affects both the in-app keyboard and the system keyboard',
+                    style: textTheme.bodyMedium?.copyWith(
+                      color: scheme.onSurfaceVariant,
+                    ),
+                  ),
                 ],
               ),
             ),
             const SizedBox(height: 16),
-            Text('Keys', style: textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)),
+            Text(
+              'Keys',
+              style: textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.w900,
+              ),
+            ),
             const SizedBox(height: 8),
             Container(
               padding: const EdgeInsets.all(16),
@@ -870,8 +1001,18 @@ class SettingsPage extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Expanded(child: Text('Show key borders', style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w900))),
-                  Switch(value: settings.showKeyBorders, onChanged: (v) => settings.setShowKeyBorders(v)),
+                  Expanded(
+                    child: Text(
+                      'Show key borders',
+                      style: textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+                  Switch(
+                    value: settings.showKeyBorders,
+                    onChanged: (v) => settings.setShowKeyBorders(v),
+                  ),
                 ],
               ),
             ),
@@ -907,7 +1048,8 @@ class _KeyboardPageState extends State<KeyboardPage> {
     if (widget.settings.layoutMode == KeyboardLayoutMode.malayalam) {
       return const [];
     }
-    if (_currentWord == _sugWordCache && widget.settings.isMalayalamMode == _sugModeCache) {
+    if (_currentWord == _sugWordCache &&
+        widget.settings.isMalayalamMode == _sugModeCache) {
       return _sugCache;
     }
     _sugWordCache = _currentWord;
@@ -954,7 +1096,9 @@ class _KeyboardPageState extends State<KeyboardPage> {
 
   void _space() {
     final now = DateTime.now();
-    final isDoubleTap = _lastSpaceTapAt != null && now.difference(_lastSpaceTapAt!).inMilliseconds < 300;
+    final isDoubleTap =
+        _lastSpaceTapAt != null &&
+        now.difference(_lastSpaceTapAt!).inMilliseconds < 300;
     _lastSpaceTapAt = now;
 
     setState(() {
@@ -982,8 +1126,11 @@ class _KeyboardPageState extends State<KeyboardPage> {
         return;
       }
 
-      final commit = _suggestions.isNotEmpty ? _suggestions.first : _currentWord;
-      _text = '${_text.substring(0, _text.length - _currentWord.length)}$commit ';
+      final commit = _suggestions.isNotEmpty
+          ? _suggestions.first
+          : _currentWord;
+      _text =
+          '${_text.substring(0, _text.length - _currentWord.length)}$commit ';
       _currentWord = '';
     });
     _scrollToBottom();
@@ -1034,8 +1181,14 @@ class _KeyboardPageState extends State<KeyboardPage> {
           title: const Text('Clear text?'),
           content: const Text('This will remove all typed text.'),
           actions: [
-            TextButton(onPressed: () => Navigator.of(context).pop(false), child: const Text('Cancel')),
-            TextButton(onPressed: () => Navigator.of(context).pop(true), child: const Text('Clear')),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: const Text('Clear'),
+            ),
           ],
         );
       },
@@ -1057,7 +1210,11 @@ class _KeyboardPageState extends State<KeyboardPage> {
         _scrollController.jumpTo(target);
         return;
       }
-      _scrollController.animateTo(target, duration: const Duration(milliseconds: 120), curve: Curves.easeOut);
+      _scrollController.animateTo(
+        target,
+        duration: const Duration(milliseconds: 120),
+        curve: Curves.easeOut,
+      );
     });
   }
 
@@ -1071,6 +1228,7 @@ class _KeyboardPageState extends State<KeyboardPage> {
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context);
     final safe = media.viewPadding;
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -1115,7 +1273,9 @@ class _KeyboardPageState extends State<KeyboardPage> {
                     return SingleChildScrollView(
                       controller: _scrollController,
                       child: ConstrainedBox(
-                        constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                        constraints: BoxConstraints(
+                          minHeight: constraints.maxHeight,
+                        ),
                         child: Align(
                           alignment: Alignment.bottomLeft,
                           child: Text(
@@ -1123,7 +1283,9 @@ class _KeyboardPageState extends State<KeyboardPage> {
                             style: TextStyle(
                               fontSize: 20,
                               height: 1.4,
-                              color: _text.isEmpty ? AppColors.textMuted : Colors.white,
+                              color: _text.isEmpty
+                                  ? scheme.onSurfaceVariant
+                                  : scheme.onSurface,
                             ),
                           ),
                         ),
@@ -1134,12 +1296,21 @@ class _KeyboardPageState extends State<KeyboardPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(safe.left, 0, safe.right, safe.bottom),
+              padding: EdgeInsets.fromLTRB(
+                safe.left,
+                0,
+                safe.right,
+                safe.bottom,
+              ),
               child: AnimatedBuilder(
                 animation: widget.settings,
                 builder: (context, _) {
                   return ConstrainedBox(
-                    constraints: BoxConstraints(maxHeight: media.size.height * widget.settings.keyboardHeightFactor),
+                    constraints: BoxConstraints(
+                      maxHeight:
+                          media.size.height *
+                          widget.settings.keyboardHeightFactor,
+                    ),
                     child: EngLamKeyboard(
                       currentWord: _currentWord,
                       suggestions: _suggestions,
@@ -1149,9 +1320,12 @@ class _KeyboardPageState extends State<KeyboardPage> {
                       onToggleMalayalamMode: _toggleMalayalam,
                       onToggleLayoutMode: () {
                         final next = switch (widget.settings.layoutMode) {
-                          KeyboardLayoutMode.translit => KeyboardLayoutMode.malayalam,
-                          KeyboardLayoutMode.malayalam => KeyboardLayoutMode.handwriting,
-                          KeyboardLayoutMode.handwriting => KeyboardLayoutMode.translit,
+                          KeyboardLayoutMode.translit =>
+                            KeyboardLayoutMode.malayalam,
+                          KeyboardLayoutMode.malayalam =>
+                            KeyboardLayoutMode.handwriting,
+                          KeyboardLayoutMode.handwriting =>
+                            KeyboardLayoutMode.translit,
                         };
                         widget.settings.setLayoutMode(next);
                         if (next == KeyboardLayoutMode.handwriting) {
@@ -1234,7 +1408,9 @@ List<String> getSuggestions(String input, bool isMalayalamMode) {
   if (lower.isEmpty) return const [];
 
   if (!isMalayalamMode) {
-    final cap = input.isEmpty ? input : input[0].toUpperCase() + input.substring(1).toLowerCase();
+    final cap = input.isEmpty
+        ? input
+        : input[0].toUpperCase() + input.substring(1).toLowerCase();
     return [lower, cap, input.toUpperCase()];
   }
 
@@ -1330,7 +1506,18 @@ class _EngLamKeyboardState extends State<EngLamKeyboard> {
     ['പ', 'ഫ', 'ബ', 'ഭ', 'മ', 'യ', 'ര', 'ല', 'വ', 'സ'],
   ];
 
-  static const _symbolsRow2 = ['@', '#', '₹', '_', '&', '-', '+', '(', ')', '/'];
+  static const _symbolsRow2 = [
+    '@',
+    '#',
+    '₹',
+    '_',
+    '&',
+    '-',
+    '+',
+    '(',
+    ')',
+    '/',
+  ];
   static const _symbolsRow3 = ['*', '"', '\'', ':', ';', '!', '?', '…'];
   static const _symbolsRow4A = ['%', '=', '/', '\\', '|'];
   static const _symbolsRow4B = ['[', ']', '{', '}', '<', '>', '~'];
@@ -1443,11 +1630,21 @@ class _EngLamKeyboardState extends State<EngLamKeyboard> {
     setState(() => _hwRecognizing = true);
     try {
       final strokes = _hwStrokes
-          .map((s) => s.map((p) => {'x': p.x, 'y': p.y, 't': p.t}).toList(growable: false))
+          .map(
+            (s) => s
+                .map((p) => {'x': p.x, 'y': p.y, 't': p.t})
+                .toList(growable: false),
+          )
           .toList(growable: false);
-      final raw = await _handwritingChannel.invokeMethod<List<dynamic>>('recognize', {'strokes': strokes});
+      final raw = await _handwritingChannel.invokeMethod<List<dynamic>>(
+        'recognize',
+        {'strokes': strokes},
+      );
       if (!mounted) return;
-      setState(() => _hwCandidates = raw?.map((e) => e.toString()).toList(growable: false) ?? const []);
+      setState(
+        () => _hwCandidates =
+            raw?.map((e) => e.toString()).toList(growable: false) ?? const [],
+      );
     } catch (_) {
       if (!mounted) return;
       setState(() => _hwCandidates = const []);
@@ -1483,12 +1680,19 @@ class _EngLamKeyboardState extends State<EngLamKeyboard> {
                 child: GestureDetector(
                   onPanStart: (d) {
                     final t = DateTime.now().millisecondsSinceEpoch;
-                    setState(() => _hwActiveStroke = [_HwPoint(d.localPosition.dx, d.localPosition.dy, t)]);
+                    setState(
+                      () => _hwActiveStroke = [
+                        _HwPoint(d.localPosition.dx, d.localPosition.dy, t),
+                      ],
+                    );
                   },
                   onPanUpdate: (d) {
                     final t = DateTime.now().millisecondsSinceEpoch;
                     setState(() {
-                      _hwActiveStroke = [..._hwActiveStroke, _HwPoint(d.localPosition.dx, d.localPosition.dy, t)];
+                      _hwActiveStroke = [
+                        ..._hwActiveStroke,
+                        _HwPoint(d.localPosition.dx, d.localPosition.dy, t),
+                      ];
                     });
                   },
                   onPanEnd: (_) {
@@ -1500,7 +1704,10 @@ class _EngLamKeyboardState extends State<EngLamKeyboard> {
                     _hwScheduleRecognize();
                   },
                   child: CustomPaint(
-                    painter: _HandwritingPainter(strokes: _hwStrokes, active: _hwActiveStroke),
+                    painter: _HandwritingPainter(
+                      strokes: _hwStrokes,
+                      active: _hwActiveStroke,
+                    ),
                     child: const SizedBox.expand(),
                   ),
                 ),
@@ -1614,7 +1821,11 @@ class _EngLamKeyboardState extends State<EngLamKeyboard> {
           color: AppColors.surface,
           borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
           boxShadow: [
-            BoxShadow(color: Colors.black54, blurRadius: 24, offset: Offset(0, -12)),
+            BoxShadow(
+              color: Colors.black54,
+              blurRadius: 24,
+              offset: Offset(0, -12),
+            ),
           ],
         ),
         child: Column(
@@ -1636,7 +1847,9 @@ class _EngLamKeyboardState extends State<EngLamKeyboard> {
       );
     }
 
-    final rows = widget.layoutMode == KeyboardLayoutMode.malayalam ? _malayalamLayout : _alphaLayout;
+    final rows = widget.layoutMode == KeyboardLayoutMode.malayalam
+        ? _malayalamLayout
+        : _alphaLayout;
     final content = Padding(
       padding: const EdgeInsets.fromLTRB(8, 8, 8, 10),
       child: Column(
@@ -1651,16 +1864,21 @@ class _EngLamKeyboardState extends State<EngLamKeyboard> {
             keys: _isSymbols ? _symbolsRow2 : rows[1],
             widthFactor: _isSymbols ? null : 0.9,
             onKey: _handleKey,
-            labelTransform: _isSymbols ? null : (s) => (_isShift || _isCaps) ? s.toUpperCase() : s,
+            labelTransform: _isSymbols
+                ? null
+                : (s) => (_isShift || _isCaps) ? s.toUpperCase() : s,
             showKeyBorders: widget.showKeyBorders,
           ),
-          if (_isSymbols || widget.layoutMode == KeyboardLayoutMode.malayalam) ...[
+          if (_isSymbols ||
+              widget.layoutMode == KeyboardLayoutMode.malayalam) ...[
             const SizedBox(height: 8),
             _KeyRow(
               keys: _isSymbols ? _symbolsRow3 : rows[2],
               widthFactor: 0.9,
               onKey: _handleKey,
-              labelTransform: _isSymbols ? null : (s) => (_isShift || _isCaps) ? s.toUpperCase() : s,
+              labelTransform: _isSymbols
+                  ? null
+                  : (s) => (_isShift || _isCaps) ? s.toUpperCase() : s,
               showKeyBorders: widget.showKeyBorders,
             ),
           ],
@@ -1672,7 +1890,9 @@ class _EngLamKeyboardState extends State<EngLamKeyboard> {
                 isAction: true,
                 isActive: _isShift || _isCaps,
                 minWidth: 54,
-                onTap: _isSymbols ? () => setState(() => _isMoreSymbols = !_isMoreSymbols) : _shift,
+                onTap: _isSymbols
+                    ? () => setState(() => _isMoreSymbols = !_isMoreSymbols)
+                    : _shift,
                 showBorder: widget.showKeyBorders,
               ),
               const SizedBox(width: 6),
@@ -1680,9 +1900,13 @@ class _EngLamKeyboardState extends State<EngLamKeyboard> {
                 child: _KeyRow(
                   keys: _isSymbols
                       ? (_isMoreSymbols ? _symbolsRow4B : _symbolsRow4A)
-                      : (widget.layoutMode == KeyboardLayoutMode.malayalam ? rows[3] : rows[2]),
+                      : (widget.layoutMode == KeyboardLayoutMode.malayalam
+                            ? rows[3]
+                            : rows[2]),
                   onKey: _handleKey,
-                  labelTransform: _isSymbols ? null : (s) => (_isShift || _isCaps) ? s.toUpperCase() : s,
+                  labelTransform: _isSymbols
+                      ? null
+                      : (s) => (_isShift || _isCaps) ? s.toUpperCase() : s,
                   showKeyBorders: widget.showKeyBorders,
                 ),
               ),
@@ -1792,7 +2016,11 @@ class _EngLamKeyboardState extends State<EngLamKeyboard> {
         color: AppColors.surface,
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
         boxShadow: [
-          BoxShadow(color: Colors.black54, blurRadius: 24, offset: Offset(0, -12)),
+          BoxShadow(
+            color: Colors.black54,
+            blurRadius: 24,
+            offset: Offset(0, -12),
+          ),
         ],
       ),
       child: LayoutBuilder(
@@ -1800,14 +2028,19 @@ class _EngLamKeyboardState extends State<EngLamKeyboard> {
           final fixed = [
             _SuggestionBar(
               isMalayalamMode: widget.isMalayalamMode,
-              suggestions: widget.layoutMode == KeyboardLayoutMode.malayalam ? const [] : widget.suggestions,
+              suggestions: widget.layoutMode == KeyboardLayoutMode.malayalam
+                  ? const []
+                  : widget.suggestions,
               onSelect: widget.onSuggestionSelect,
             ),
             _EmojiBar(onSelect: widget.onInput),
           ];
 
           if (!constraints.hasBoundedHeight) {
-            return Column(mainAxisSize: MainAxisSize.min, children: [...fixed, content]);
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [...fixed, content],
+            );
           }
 
           return Column(
@@ -1896,9 +2129,16 @@ class _HandwritingCandidateBar extends StatelessWidget {
         ? const SizedBox(
             width: 20,
             height: 20,
-            child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.textMuted),
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+              color: AppColors.textMuted,
+            ),
           )
-        : const Icon(Icons.delete_outline, color: AppColors.textMuted, size: 20);
+        : const Icon(
+            Icons.delete_outline,
+            color: AppColors.textMuted,
+            size: 20,
+          );
 
     return Container(
       height: 44,
@@ -1913,10 +2153,16 @@ class _HandwritingCandidateBar extends StatelessWidget {
           Container(
             width: 44,
             alignment: Alignment.center,
-            decoration: const BoxDecoration(border: Border(right: BorderSide(color: AppColors.border))),
+            decoration: const BoxDecoration(
+              border: Border(right: BorderSide(color: AppColors.border)),
+            ),
             child: const Text(
               'MA',
-              style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.primary),
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+                color: AppColors.primary,
+              ),
             ),
           ),
           Expanded(
@@ -1929,30 +2175,41 @@ class _HandwritingCandidateBar extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
                             'Write…',
-                            style: TextStyle(color: AppColors.textMuted, fontWeight: FontWeight.w600),
+                            style: TextStyle(
+                              color: AppColors.textMuted,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ]
                     : candidates
-                        .take(10)
-                        .map(
-                          (s) => InkWell(
-                            onTap: () => onSelect(s),
-                            child: Container(
-                              height: double.infinity,
-                              alignment: Alignment.center,
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
-                              decoration: const BoxDecoration(
-                                border: Border(right: BorderSide(color: AppColors.border)),
-                              ),
-                              child: Text(
-                                s,
-                                style: const TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700, fontSize: 15),
+                          .take(10)
+                          .map(
+                            (s) => InkWell(
+                              onTap: () => onSelect(s),
+                              child: Container(
+                                height: double.infinity,
+                                alignment: Alignment.center,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                decoration: const BoxDecoration(
+                                  border: Border(
+                                    right: BorderSide(color: AppColors.border),
+                                  ),
+                                ),
+                                child: Text(
+                                  s,
+                                  style: const TextStyle(
+                                    color: AppColors.primary,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 15,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        )
-                        .toList(),
+                          )
+                          .toList(),
               ),
             ),
           ),
@@ -1962,7 +2219,9 @@ class _HandwritingCandidateBar extends StatelessWidget {
               width: 44,
               height: double.infinity,
               alignment: Alignment.center,
-              decoration: const BoxDecoration(border: Border(left: BorderSide(color: AppColors.border))),
+              decoration: const BoxDecoration(
+                border: Border(left: BorderSide(color: AppColors.border)),
+              ),
               child: trailing,
             ),
           ),
@@ -1998,13 +2257,17 @@ class _SuggestionBar extends StatelessWidget {
           Container(
             width: 44,
             alignment: Alignment.center,
-            decoration: const BoxDecoration(border: Border(right: BorderSide(color: AppColors.border))),
+            decoration: const BoxDecoration(
+              border: Border(right: BorderSide(color: AppColors.border)),
+            ),
             child: Text(
               isMalayalamMode ? 'MA' : 'EN',
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w700,
-                color: isMalayalamMode ? AppColors.primary : AppColors.textMuted,
+                color: isMalayalamMode
+                    ? AppColors.primary
+                    : AppColors.textMuted,
               ),
             ),
           ),
@@ -2018,34 +2281,41 @@ class _SuggestionBar extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
                             'EngLam',
-                            style: TextStyle(color: AppColors.textMuted, fontWeight: FontWeight.w600),
+                            style: TextStyle(
+                              color: AppColors.textMuted,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ]
                     : suggestions
-                        .take(10)
-                        .map(
-                          (s) => InkWell(
-                            onTap: () => onSelect(s),
-                            child: Container(
-                              height: double.infinity,
-                              alignment: Alignment.center,
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
-                              decoration: const BoxDecoration(
-                              border: Border(right: BorderSide(color: AppColors.border)),
-                              ),
-                              child: Text(
-                                s,
-                                style: const TextStyle(
-                                color: AppColors.primary,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 15,
+                          .take(10)
+                          .map(
+                            (s) => InkWell(
+                              onTap: () => onSelect(s),
+                              child: Container(
+                                height: double.infinity,
+                                alignment: Alignment.center,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                decoration: const BoxDecoration(
+                                  border: Border(
+                                    right: BorderSide(color: AppColors.border),
+                                  ),
+                                ),
+                                child: Text(
+                                  s,
+                                  style: const TextStyle(
+                                    color: AppColors.primary,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 15,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        )
-                        .toList(),
+                          )
+                          .toList(),
               ),
             ),
           ),
@@ -2064,7 +2334,7 @@ class _IconBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 44,
+      width: 48,
       height: double.infinity,
       decoration: const BoxDecoration(
         border: Border(right: BorderSide(color: AppColors.border)),
@@ -2079,12 +2349,24 @@ class _EmojiBar extends StatelessWidget {
 
   final ValueChanged<String> onSelect;
 
-  static const _emojis = ['😂', '❤️', '🙏', '🥰', '🤣', '👍', '😭', '😁', '🫂', '👌', '🌹'];
+  static const _emojis = [
+    '😂',
+    '❤️',
+    '🙏',
+    '🥰',
+    '🤣',
+    '👍',
+    '😭',
+    '😁',
+    '🫂',
+    '👌',
+    '🌹',
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 48,
       decoration: const BoxDecoration(
         color: AppColors.surface,
         border: Border(bottom: BorderSide(color: AppColors.border)),
@@ -2092,7 +2374,13 @@ class _EmojiBar extends StatelessWidget {
       child: Row(
         children: [
           const SizedBox(width: 6),
-          const Icon(Icons.emoji_emotions_outlined, color: AppColors.textMuted, size: 20),
+          const ExcludeSemantics(
+            child: Icon(
+              Icons.emoji_emotions_outlined,
+              color: AppColors.textMuted,
+              size: 20,
+            ),
+          ),
           const SizedBox(width: 6),
           Expanded(
             child: ListView.separated(
@@ -2105,8 +2393,8 @@ class _EmojiBar extends StatelessWidget {
                   onTap: () => onSelect(e),
                   borderRadius: BorderRadius.circular(999),
                   child: Container(
-                    width: 34,
-                    height: 34,
+                    width: 48,
+                    height: 48,
                     alignment: Alignment.center,
                     child: Text(e, style: const TextStyle(fontSize: 20)),
                   ),
@@ -2114,7 +2402,9 @@ class _EmojiBar extends StatelessWidget {
               },
             ),
           ),
-          const Icon(Icons.more_horiz, color: AppColors.textMuted, size: 20),
+          const ExcludeSemantics(
+            child: Icon(Icons.more_horiz, color: AppColors.textMuted, size: 20),
+          ),
           const SizedBox(width: 8),
         ],
       ),
@@ -2220,18 +2510,25 @@ class _KeyButtonState extends State<_KeyButton> {
 
   @override
   Widget build(BuildContext context) {
-    final base = widget.bgColor ??
+    final base =
+        widget.bgColor ??
         (widget.isPrimary
             ? AppColors.primary
             : widget.isAction
-                ? AppColors.actionKey
-                : AppColors.key);
+            ? AppColors.actionKey
+            : AppColors.key);
 
-    final pressedColor = widget.isPrimary ? AppColors.primaryPressed : AppColors.keyPressed;
+    final pressedColor = widget.isPrimary
+        ? AppColors.primaryPressed
+        : AppColors.keyPressed;
     final isPressed = _pressed || widget.isActive;
 
     final fg = widget.isPrimary ? Colors.black : Colors.white;
-    final labelStyle = TextStyle(fontSize: 19, fontWeight: FontWeight.w600, color: fg);
+    final labelStyle = TextStyle(
+      fontSize: 19,
+      fontWeight: FontWeight.w600,
+      color: fg,
+    );
 
     return ConstrainedBox(
       constraints: BoxConstraints(minWidth: widget.minWidth ?? 0),
@@ -2250,7 +2547,9 @@ class _KeyButtonState extends State<_KeyButton> {
               decoration: BoxDecoration(
                 color: isPressed ? pressedColor : base,
                 borderRadius: BorderRadius.circular(10),
-                border: widget.showBorder ? Border.all(color: AppColors.border) : null,
+                border: widget.showBorder
+                    ? Border.all(color: AppColors.border)
+                    : null,
               ),
               child: widget.child ?? Text(widget.label, style: labelStyle),
             ),
@@ -2269,12 +2568,20 @@ class _KeyButtonState extends State<_KeyButton> {
                       color: AppColors.keyPressed,
                       borderRadius: BorderRadius.circular(14),
                       boxShadow: const [
-                        BoxShadow(color: Colors.black54, blurRadius: 18, offset: Offset(0, 10)),
+                        BoxShadow(
+                          color: Colors.black54,
+                          blurRadius: 18,
+                          offset: Offset(0, 10),
+                        ),
                       ],
                     ),
                     child: Text(
                       widget.label,
-                      style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w700, color: Colors.white),
+                      style: const TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),

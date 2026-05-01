@@ -130,12 +130,13 @@ class AppSettings extends ChangeNotifier {
   Future<void> _pushToAndroidIme() async {
     if (kIsWeb || !Platform.isAndroid) return;
     try {
-      await _nativeSettingsChannel.invokeMethod<void>('setSettings', <String, Object?>{
-        _prefsKeyboardHeightFactor: keyboardHeightFactor,
-        _prefsShowKeyBorders: showKeyBorders,
-        _prefsLayoutMode: _layoutToString(layoutMode),
-        _prefsIsMalayalamMode: isMalayalamMode,
-      });
+      await _nativeSettingsChannel
+          .invokeMethod<void>('setSettings', <String, Object?>{
+            _prefsKeyboardHeightFactor: keyboardHeightFactor,
+            _prefsShowKeyBorders: showKeyBorders,
+            _prefsLayoutMode: _layoutToString(layoutMode),
+            _prefsIsMalayalamMode: isMalayalamMode,
+          });
     } catch (_) {}
   }
 }
